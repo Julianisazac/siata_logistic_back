@@ -131,3 +131,18 @@ CREATE TABLE dbo.warehouses
 GO
 
 
+IF OBJECT_ID ('dbo.users') IS NOT NULL
+	DROP TABLE dbo.users
+GO
+
+CREATE TABLE dbo.users
+	(
+	id         INT IDENTITY NOT NULL,
+	email      VARCHAR (150) NOT NULL,
+	password   VARCHAR (255) NOT NULL,
+	created_at DATETIME DEFAULT (getdate()) NULL,
+	PRIMARY KEY (id),
+	UNIQUE (email)
+	)
+GO
+

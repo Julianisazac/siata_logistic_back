@@ -2,9 +2,12 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 import { WarehousesService } from './warehouses.service';
 import { CreateWarehouseDto, UpdateWarehouseDto } from './dto/warehouse.dto';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('🏭 Almacenes')
 @Controller('warehouses')
+@UseGuards(JwtAuthGuard)
 export class WarehousesController {
 
     constructor(private readonly warehousesService: WarehousesService) { }

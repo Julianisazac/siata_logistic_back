@@ -2,9 +2,12 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 import { ProductsService } from './products.service';
 import { CreateProductDto, UpdateProductDto } from './dto/product.dto';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('📦 Productos')
 @Controller('products')
+@UseGuards(JwtAuthGuard)
 export class ProductsController {
 
     constructor(private readonly productsService: ProductsService) { }

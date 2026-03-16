@@ -6,6 +6,7 @@ import { ClientsModule } from './clients/clients.module';
 import { ProductsModule } from './products/products.module';
 import { WarehousesModule } from './warehouses/warehouses.module';
 import { PortsModule } from './ports/ports.module';
+import { AuthModule } from './auth/auth.module';
 const AWS = require('aws-sdk');
 AWS.config.update({ region: 'us-east-2' });
 
@@ -39,6 +40,7 @@ AWS.config.update({ region: 'us-east-2' });
     ProductsModule,
     WarehousesModule,
     PortsModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

@@ -3,9 +3,12 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { ShipmentsService } from './shipments.service';
 import { CreateLandShipmentDto } from './dto/create-land-shipment.dto';
 import { CreateSeaShipmentDto } from './dto/create-sea-shipment.dto';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('🚚 Envíos')
 @Controller('shipments')
+@UseGuards(JwtAuthGuard)
 export class ShipmentsController {
 
     constructor(private readonly shipmentsService: ShipmentsService) { }

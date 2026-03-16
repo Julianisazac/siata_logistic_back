@@ -2,9 +2,12 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 import { PortsService } from './ports.service';
 import { CreatePortDto, UpdatePortDto } from './dto/port.dto';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('⚓ Puertos')
 @Controller('ports')
+@UseGuards(JwtAuthGuard)
 export class PortsController {
 
     constructor(private readonly portsService: PortsService) { }

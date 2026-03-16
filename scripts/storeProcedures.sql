@@ -317,3 +317,33 @@ BEGIN
 END
 GO
 
+LTER PROCEDURE SpCreateUser
+  @email VARCHAR(150),
+  @password VARCHAR(255)
+AS
+BEGIN
+  IF EXISTS (SELECT 1 FROM users WHERE email = @email)
+  BEGIN
+    RAISERROR('El email ya está registrado', 16, 1)
+    RETURN
+  END
+
+  INSERT INTO users (email, password)
+  VALUES (@email, @password)
+
+  SELECT id, email, created_at
+  FROM users
+  WHERE id = SCOPE_IDENTITY()
+END
+GO
+
+ALTER PROCEDURE SpGetUserByEmail
+  @email VARCHAR(150)
+AS
+BEGIN
+  SELECT id, email, password
+  FROM users
+  WHERE email = @email
+END
+GO
+
